@@ -13,10 +13,7 @@ git config --global user.email "proudust@gmail.com"
 function cd-ghq () {
   local selected_dir=$(ghq list -p | peco --query "$LBUFFER")
   if [ -n "$selected_dir" ]; then
-    BUFFER="cd ${selected_dir}"
-    zle accept-line
+    cd ${selected_dir}
   fi
-  zle clear-screen
 }
-zle -N cd-ghq
-bindkey '^]' cd-ghq
+bind -x '"]": cd-ghq'
