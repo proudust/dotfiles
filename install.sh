@@ -10,4 +10,4 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/i
 source ~/.bashrc
 
 brew install golang npm python3 python@2
-brew install ghq jq peco unzip zip
+brew install ghq jq peco unzip yq zip
