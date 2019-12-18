@@ -7,7 +7,7 @@ ln -sf ~/dotfiles/.bashrc ~/.bashrc
 
 sudo apt install -y build-essential curl file gcc git
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
-source ~/.bash_profile
+source ~/.bashrc
 
 brew install golang npm python3 python@2
 brew install ghq jq peco unzip zip
