@@ -2,6 +2,7 @@ eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 export GOPATH="/mnt/d/develop"
 export PATH=$GOPATH/bin:$PATH
 
+alias ..="cd .."
 alias python="python3"
 alias pip="pip3"
 
