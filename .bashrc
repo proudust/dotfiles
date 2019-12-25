@@ -20,9 +20,8 @@ function code(){
 }
 
 function cd-ghq() {
-  local selected_dir=$(ghq list -p | peco --query "$LBUFFER")
-  if [ -n "$selected_dir" ]; then
-    cd ${selected_dir}
-  fi
+  echo 'wait...'
+  cd "$( ghq list --full-path | peco)"
 }
-bind -x '"]": cd-ghq'
+bind -x '"\201": cd-ghq'
+bind '"]":"\201\C-m"'
