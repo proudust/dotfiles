@@ -12,3 +12,5 @@ source ~/.bashrc
 
 brew install golang npm python3 python@2
 brew install ghq jq peco unzip yq zip
+
+npm install -g npm-check-updates
