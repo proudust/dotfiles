@@ -7,6 +7,7 @@ fi
 export PATH=$GOPATH/bin:$PATH
 
 alias ..="cd .."
+alias cat="bat --paging=never"
 alias ls="exa"
 alias npmb='npm run build'
 alias npmd='npm run deploy'
