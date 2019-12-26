@@ -3,6 +3,7 @@ export GOPATH="/mnt/d/develop"
 export PATH=$GOPATH/bin:$PATH
 
 alias ..="cd .."
+alias ls="exa"
 alias npmb='npm run build'
 alias npmd='npm run deploy'
 alias npmi='npm install'
