@@ -14,3 +14,10 @@ brew install golang npm python3 python@2
 brew install exa ghq jq peco powerline-go unzip yq zip
 
 npm install -g npm-check-updates
+
+if [ -f /proc/sys/fs/binfmt_misc/WSLInterop ]; then
+  # WSL only
+else
+  # other
+  ./installer/steam.sh
+fi
