@@ -20,8 +20,7 @@ function code(){
 }
 
 function cd-ghq() {
-  echo 'wait...'
-  cd "$( ghq list --full-path | peco)"
+  cd "$( ls -d $(ghq root)/*/*/* | peco)"
 }
 bind -x '"\201": cd-ghq'
 bind '"]":"\201\C-m"'
