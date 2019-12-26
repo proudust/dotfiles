@@ -21,12 +21,14 @@ if [ "$TERM" != "linux" ]; then
     PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
 fi
 
-function code(){
-  if [ $1 ]; then
-    local path=$(wslpath -w $1)
-  fi
-  cmd.exe /c code $path
-}
+if [ -f /proc/sys/fs/binfmt_misc/WSLInterop ]; then
+  function code() {
+    if [ $1 ]; then
+      local path=$(wslpath -w $1)
+    fi
+    cmd.exe /c code $path
+  }
+fi
 
 function cd-ghq() {
   cd "$( ls -d $(ghq root)/*/*/* | peco)"
