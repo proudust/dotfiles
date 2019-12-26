@@ -11,7 +11,7 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/i
 source ~/.bashrc
 
 brew install golang npm python3 python@2
-brew install bat exa ghq jq peco powerline-go unzip yq zip
+brew install bat coreutils exa ghq jq peco powerline-go unzip yq zip
 
 npm install -g npm-check-updates
 
@@ -19,5 +19,8 @@ if [ -f /proc/sys/fs/binfmt_misc/WSLInterop ]; then
   # WSL only
 else
   # other
+  sudo apt install -y keepass2
+  ./installer/code.sh
+  ./installer/gitkraken.sh
   ./installer/steam.sh
 fi
