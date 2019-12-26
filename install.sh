@@ -11,6 +11,6 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/i
 source ~/.bashrc
 
 brew install golang npm python3 python@2
-brew install exa ghq jq peco unzip yq zip
+brew install exa ghq jq peco powerline-go unzip yq zip
 
 npm install -g npm-check-updates

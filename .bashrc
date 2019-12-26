@@ -13,6 +13,14 @@ alias npmt='npm test'
 alias python="python3"
 alias pip="pip3"
 
+function _update_ps1() {
+    PS1="$(powerline-go -error $?)"
+}
+
+if [ "$TERM" != "linux" ]; then
+    PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
+fi
+
 function code(){
   if [ $1 ]; then
     local path=$(wslpath -w $1)
