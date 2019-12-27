@@ -26,8 +26,8 @@ if [ -f /proc/sys/fs/binfmt_misc/WSLInterop ]; then
 else
   # other
   sudo apt install -y keepass2
-  ./installer/cica-font.sh
-  ./installer/code.sh
-  ./installer/gitkraken.sh
-  ./installer/steam.sh
+  $DOTFILES_REPO/installer/cica-font.sh
+  $DOTFILES_REPO/installer/code.sh
+  $DOTFILES_REPO/installer/gitkraken.sh
+  $DOTFILES_REPO/installer/steam.sh
 fi
