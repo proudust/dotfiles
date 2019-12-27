@@ -23,6 +23,8 @@ npm install -g npm-check-updates
 
 if [ -f /proc/sys/fs/binfmt_misc/WSLInterop ]; then
   # WSL only
+  sudo apt install -y libasound2 libxss1
+  $DOTFILES_REPO/installer/gitkraken.sh
 else
   # other
   sudo apt install -y keepass2
