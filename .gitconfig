@@ -3,3 +3,7 @@
 [user]
 	name = Proudust
 	email = proudust@gmail.com
+[core]
+	autocrlf = false
+	fscache = true
+	preloadindex = true
