@@ -2,9 +2,15 @@ sudo apt update
 sudo apt upgrade -y
 sudo apt autoremove -y
 
-git clone https://github.com/proudust/dotfiles.git ~/dotfiles
-ln -sf ~/dotfiles/.bashrc ~/.bashrc
-ln -sf ~/dotfiles/.gitconfig ~/.gitconfig
+DOTFILES_REPO="~/dotfiles"
+if [ ! -d $DOTFILES_REPO/.git ]; then
+  git clone https://github.com/proudust/dotfiles.git $DOTFILES_REPO
+else
+  git -C $DOTFILES_REPO fetch origin
+  git -C $DOTFILES_REPO pull origin
+fi
+ln -sf $DOTFILES_REPO/.bashrc ~/.bashrc
+ln -sf $DOTFILES_REPO/.gitconfig ~/.gitconfig
 
 sudo apt install -y build-essential curl file gcc git
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
