@@ -31,6 +31,13 @@ choco pin add -n=minecraft
 choco pin add -n=steam
 choco pin add -n=origin
 
+@REM Uninstall OneDrive
+TASKKILL /f /im OneDrive.exe
+%SystemRoot%\SysWOW64\OneDriveSetup.exe /uninstall
+RD "%UserProfile%\OneDrive" /Q /S
+RD "%LocalAppData%\Microsoft\OneDrive" /Q /S
+RD "%ProgramData%\Microsoft OneDrive" /Q /S
+
 GOTO END
 
 :ERROR_NOT_ADMIN
