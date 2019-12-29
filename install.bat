@@ -18,6 +18,9 @@ IF NOT EXIST %DOTFILES_REPO%\.git (
 )
 MKLINK "%HOMEPATH%\.gitconfig" "%DOTFILES_REPO%\.gitconfig"
 
+@REM Set registry
+REG IMPORT %DOTFILES_REPO%\registry.reg
+
 @REM Install chocolatey packages
 cinst -y %DOTFILES_REPO%\Packages.config
 choco pin add -n=googlechrome
