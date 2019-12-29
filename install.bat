@@ -18,6 +18,9 @@ IF NOT EXIST %DOTFILES_REPO%\.git (
 )
 MKLINK "%HOMEPATH%\.gitconfig" "%DOTFILES_REPO%\.gitconfig"
 
+@REM Enable Windows feature
+powershell -Command "Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux"
+
 @REM Set registry
 REG IMPORT %DOTFILES_REPO%\registry.reg
 
