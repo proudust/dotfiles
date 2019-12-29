@@ -23,6 +23,7 @@ npm install -g npm-check-updates
 
 if [ -f /proc/sys/fs/binfmt_misc/WSLInterop ]; then
   # WSL only
+  sudo ln -s /mnt/c/Windows/Fonts /usr/share/fonts/windows
   sudo apt install -y libasound2 libxss1
   $DOTFILES_REPO/installer/gitkraken.sh
 else
