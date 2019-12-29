@@ -27,6 +27,9 @@ if [ "$TERM" != "linux" ]; then
 fi
 
 if [ -f /proc/sys/fs/binfmt_misc/WSLInterop ]; then
+  export DISPLAY=localhost:0.0
+  export LIBGL_ALWAYS_INDIRECT=1
+
   function code() {
     if [ $1 ]; then
       local path=$(wslpath -w $1)
