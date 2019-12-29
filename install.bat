@@ -18,6 +18,16 @@ IF NOT EXIST %DOTFILES_REPO%\.git (
 )
 MKLINK "%HOMEPATH%\.gitconfig" "%DOTFILES_REPO%\.gitconfig"
 
+@REM Install chocolatey packages
+cinst -y %DOTFILES_REPO%\Packages.config
+choco pin add -n=googlechrome
+choco pin add -n=vivaldi
+choco pin add -n=vscode
+choco pin add -n=discord
+choco pin add -n=minecraft
+choco pin add -n=steam
+choco pin add -n=origin
+
 GOTO END
 
 :ERROR_NOT_ADMIN
