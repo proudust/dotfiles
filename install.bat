@@ -1,3 +1,8 @@
+@ECHO OFF
+
+@REM Check admin
+OPENFILES > NUL 2>&1
+IF NOT %ERRORLEVEL% EQU 0 GOTO ERROR_NOT_ADMIN
 @REM Make symbolic link
 DEL "%HOMEPATH%\.gitconfig"
 SET DOTFILES_REPO=%HOMEPATH%\dotfiles
