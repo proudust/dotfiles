@@ -1,0 +1,24 @@
+{
+  "recommendations": [
+    "dbaeumer.vscode-eslint",
+    "donjayamanne.githistory",
+    "DotJoshJohnson.xml",
+    "eamodio.gitlens",
+    "EditorConfig.editorconfig",
+    "humao.rest-client",
+    "LuqueDaniel.languague-renpy",
+    "mechatroner.rainbow-csv",
+    "mkaufman.HTMLHint",
+    "MS-CEINTL.vscode-language-pack-ja",
+    "ms-python.python",
+    "ms-vscode-remote.remote-wsl",
+    "redhat.vscode-yaml",
+    "slevesque.vscode-hexdump",
+    "Tyriar.sort-lines",
+    "VisualStudioExptTeam.vscodeintellicode",
+    "wraith13.background-phi-colors",
+    "wraith13.clairvoyant",
+    "xyz.local-history",
+    "yzhang.markdown-all-in-one"
+  ]
+}

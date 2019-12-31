@@ -36,6 +36,11 @@ choco pin add -n=minecraft
 choco pin add -n=steam
 choco pin add -n=origin
 
+@REM Install VSCode extensions
+FOR /f "usebackq delims=" %%a in (`jq -r ".recommendations[]" %HOMEPATH%\dotfiles\.vscode\extensions.json`) DO (
+  code --install-extension %%a
+)
+
 @REM Uninstall OneDrive
 TASKKILL /f /im OneDrive.exe
 %SystemRoot%\SysWOW64\OneDriveSetup.exe /uninstall
