@@ -2,7 +2,11 @@ sudo apt update
 sudo apt upgrade -y
 sudo apt autoremove -y
 
-DOTFILES_REPO="~/dotfiles"
+if [ -f /proc/sys/fs/binfmt_misc/WSLInterop ]; then
+  DOTFILES_REPO=$(wslupath -H)/dotfiles
+else
+  DOTFILES_REPO="~/dotfiles"
+fi
 if [ ! -d $DOTFILES_REPO/.git ]; then
   git clone https://github.com/proudust/dotfiles.git $DOTFILES_REPO
 else
