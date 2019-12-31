@@ -17,7 +17,7 @@ ln -sf $DOTFILES_REPO/.bashrc ~/.bashrc
 ln -sf $DOTFILES_REPO/.gitconfig ~/.gitconfig
 
 sudo apt install -y build-essential curl file gcc git
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
+type brew >/dev/null 2>&1 || sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
 source ~/.bashrc
 
 brew install golang npm python3 python@2
