@@ -41,6 +41,14 @@ FOR /f "usebackq delims=" %%a in (`jq -r ".recommendations[]" %HOMEPATH%\dotfile
   code --install-extension %%a
 )
 
+@REM Uninstall unnecessary apps
+powershell "Get-AppxPackage king.com.CandyCrushSodaSaga | Remove-AppxPackage"
+powershell "Get-AppxPackage A278AB0D.MarchofEmpires | Remove-AppxPackage"
+powershell "Get-AppxPackage 828B5831.HiddenCityMysteryofShadows | Remove-AppxPackage"
+powershell "Get-AppxPackage DolbyLaboratories.DolbyAccess | Remove-AppxPackage"
+powershell "Get-AppxPackage Microsoft.Office.OneNote | Remove-AppxPackage"
+powershell "Get-AppxPackage Microsoft.OneConnect | Remove-AppxPackage"
+
 @REM Uninstall OneDrive
 TASKKILL /f /im OneDrive.exe
 %SystemRoot%\SysWOW64\OneDriveSetup.exe /uninstall

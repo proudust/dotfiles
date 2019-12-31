@@ -1,13 +1,25 @@
 Windows Registry Editor Version 5.00
 
-; ときどきスタート画面におすすめを表示する
 [HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager]
+; ときどきスタート画面におすすめを表示する
 "SystemPaneSuggestionsEnabled"=dword:0
 
-; [スタート] ボタンを右クリックするか Windows キー + X キーを押したときに表示されるメニューで、コマンド プロンプトを Windows PowerShell に置き換える
-[HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced]
-"DontUsePowerShellOnWinX"=dword:1
 
-; Cortana のアイコンを表示する
+[HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced]
+; [スタート] ボタンを右クリックするか Windows キー + X キーを押したときに表示されるメニューで、コマンド プロンプトを Windows PowerShell に置き換えない
+"DontUsePowerShellOnWinX"=dword:1
+; タスク バーからの People バーを削除する
+"HidePeopleBar"=dword:1
+; タスクバーボタンをタスクバーに入り切らない場合のみ結合する
+"TaskbarGlomLevel"=dword:1
+; 隠しファイル、隠しフォルダー、および隠しドライブを表示する
+"Hidden"=dword:1
+; 登録されている拡張子も表示する
+"HideFileExt"=dword:0
+; 「エクスプローラーで開く」を「PC」に設定
+"LaunchTo"=dword:0
+
+
 [HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Search]
+; Cortana のアイコンを表示する
 "SearchboxTaskbarMode"=dword:1
