@@ -15,6 +15,7 @@ else
 fi
 ln -sf $DOTFILES_REPO/.bashrc ~/.bashrc
 ln -sf $DOTFILES_REPO/.gitconfig ~/.gitconfig
+ln -sf $DOTFILES_REPO/.vscode/settings.json ~/.config/Code/User/settings.json
 
 sudo apt install -y build-essential curl file gcc git
 type brew >/dev/null 2>&1 || sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"

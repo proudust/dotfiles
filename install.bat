@@ -10,6 +10,7 @@ cinst git
 
 @REM Make symbolic link
 DEL "%HOMEPATH%\.gitconfig"
+DEL "%APPDATA%\Code\User\settings.json"
 SET DOTFILES_REPO=%HOMEPATH%\dotfiles
 IF NOT EXIST %DOTFILES_REPO%\.git (
   git clone https://github.com/proudust/dotfiles.git %DOTFILES_REPO%
@@ -17,6 +18,7 @@ IF NOT EXIST %DOTFILES_REPO%\.git (
   git -C %DOTFILES_REPO% fetch origin & git -C %DOTFILES_REPO% pull origin
 )
 MKLINK "%HOMEPATH%\.gitconfig" "%DOTFILES_REPO%\.gitconfig"
+MKLINK "%APPDATA%\Code\User\settings.json" "%DOTFILES_REPO%\.vscode\settings.json"
 
 @REM Enable Windows feature
 powershell -Command "Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux"
