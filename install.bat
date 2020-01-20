@@ -11,7 +11,7 @@ cinst git
 @REM Make symbolic link
 DEL "%HOMEPATH%\.gitconfig"
 DEL "%APPDATA%\Code\User\settings.json"
-SET DOTFILES_REPO=%HOMEPATH%\dotfiles
+SET DOTFILES_REPO=%HOMEDRIVE%%HOMEPATH%\dotfiles
 IF NOT EXIST %DOTFILES_REPO%\.git (
   git clone https://github.com/proudust/dotfiles.git %DOTFILES_REPO%
 ) ELSE (
