@@ -39,7 +39,10 @@ if [ -f /proc/sys/fs/binfmt_misc/WSLInterop ]; then
 fi
 
 function cd-ghq() {
-  cd "$( ls -d $(ghq root)/*/*/* | peco)"
+  local repo="$( ls -d $(ghq root)/*/*/* | peco)"
+  if [ -n "$repo" ]; then
+    cd "$repo"
+  fi
 }
 bind -x '"\201": cd-ghq'
-bind '"]":"\201\C-m"'
+bind '"\C-]":"\201\C-m"'
