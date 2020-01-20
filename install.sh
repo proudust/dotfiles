@@ -26,7 +26,7 @@ brew install bat coreutils exa ghq jq peco powerline-go unzip yq zip
 
 npm install -g npm-check-updates
 
-sh -c "$(jq -r ".recommendations | map(\"code --install-extension \" + .)[]" .vscode/extensions.json)"
+sh -c "$(jq -r ".recommendations | map(\"code --install-extension \" + .)[]" $DOTFILES_REPO/.vscode/extensions.json)"
 
 if [ -f /proc/sys/fs/binfmt_misc/WSLInterop ]; then
   # WSL only
