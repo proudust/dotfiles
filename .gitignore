@@ -1,2 +1,8 @@
-#VSCode
+*~
+
+# Cache
+.DS_Store
+Thumbs.db
+
+# VSCode
 .history
