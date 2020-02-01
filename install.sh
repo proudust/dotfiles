@@ -1,43 +1,39 @@
-sudo apt update
-sudo apt upgrade -y
-sudo apt autoremove -y
+echo 'Install dependencies'
+sudo apt update -qy
+sudo apt install -qy build-essential curl file gcc git
 
-if [ -f /proc/sys/fs/binfmt_misc/WSLInterop ]; then
-  DOTFILES_REPO=$(wslupath -H)/dotfiles
+echo 'Clone dotfiles repo'
+if [ -f /proc/sys/fs/binfmt_misc/WSLInterop ] && [ ! -d $(wslupath -H)/dotfiles/.git ]; then
+  ln -sf $(wslupath -H)/dotfiles ~/
+elif [ ! -d ~/dotfiles/.git ]; then
+  git clone https://github.com/proudust/dotfiles.git ~/dotfiles
 else
-  DOTFILES_REPO="~/dotfiles"
+  git -C ~/dotfiles fetch origin
+  git -C ~/dotfiles pull origin
 fi
-if [ ! -d $DOTFILES_REPO/.git ]; then
-  git clone https://github.com/proudust/dotfiles.git $DOTFILES_REPO
-else
-  git -C $DOTFILES_REPO fetch origin
-  git -C $DOTFILES_REPO pull origin
-fi
-ln -sf $DOTFILES_REPO/.bashrc ~/.bashrc
-ln -sf $DOTFILES_REPO/.gitconfig ~/.gitconfig
-ln -sf $DOTFILES_REPO/.vscode/settings.json ~/.config/Code/User/settings.json
 
-sudo apt install -y build-essential curl file gcc git
-type brew >/dev/null 2>&1 || sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
+echo 'Make symbolic links'
+ln -sf ~/dotfiles/.bashrc ~
+ln -sf ~/dotfiles/.gitconfig ~
+mkdir -p ~/.config/Code/User
+ln -sf ~/dotfiles/.vscode/settings.json ~/.config/Code/User/
+
+# If you can't find brew command, install linuxbrew
+if !(type brew >/dev/null 2>&1); then
+  echo "Install linuxbrew"
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)" </dev/null
+else
+  echo "Find linuxbrew"
+fi
 source ~/.bashrc
 
+echo "Install packages"
 brew install golang npm python3 python@2
 brew install bat coreutils exa ghq jq peco powerline-go unzip yq zip
 
 npm install -g npm-check-updates
 
-sh -c "$(jq -r ".recommendations | map(\"code --install-extension \" + .)[]" $DOTFILES_REPO/.vscode/extensions.json)"
-
+# WSL only
 if [ -f /proc/sys/fs/binfmt_misc/WSLInterop ]; then
-  # WSL only
   sudo ln -s /mnt/c/Windows/Fonts /usr/share/fonts/windows
-  sudo apt install -y libasound2 libxss1
-  $DOTFILES_REPO/installer/gitkraken.sh
-else
-  # other
-  sudo apt install -y keepass2
-  $DOTFILES_REPO/installer/cica-font.sh
-  $DOTFILES_REPO/installer/code.sh
-  $DOTFILES_REPO/installer/gitkraken.sh
-  $DOTFILES_REPO/installer/steam.sh
 fi
