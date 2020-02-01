@@ -34,6 +34,10 @@ if [ -f /proc/sys/fs/binfmt_misc/WSLInterop ]; then
   export DISPLAY=localhost:0.0
   export LIBGL_ALWAYS_INDIRECT=1
 
+  function cmd() {
+    cmd.exe /c $@
+  }
+
   function code() {
     if [ $1 ]; then
       local path=$(wslpath -w $1)
