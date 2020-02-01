@@ -1,0 +1,25 @@
+name: Check
+
+on: [push]
+
+jobs:
+  install-win:
+    runs-on: windows-latest
+
+    steps:
+      - name: Install
+        run: |
+          bitsadmin /TRANSFER DOTFILES https://raw.github.com/proudust/dotfiles/${{ github.sha }}/install.bat %TEMP%\install.bat
+          %TEMP%\install.bat
+        shell: cmd
+        env:
+          CHECKOUT_REF: ${{ github.sha }}
+
+  install-linux:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Install
+        run: bash <(curl -sL raw.github.com/proudust/dotfiles/${{ github.sha }}/install.sh)
+        env:
+          CHECKOUT_REF: ${{ github.sha }}

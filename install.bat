@@ -15,6 +15,9 @@ IF NOT EXIST %DOTFILES_REPO%\.git (
 ) ELSE (
   git -C %DOTFILES_REPO% fetch origin & git -C %DOTFILES_REPO% pull origin
 )
+if defined CHECKOUT_REF (
+  git -C %DOTFILES_REPO% checkout %CHECKOUT_REF%
+)
 
 @ECHO Make symbolic links
 DEL "%HOMEPATH%\.gitconfig"

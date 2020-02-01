@@ -11,6 +11,9 @@ else
   git -C ~/dotfiles fetch origin
   git -C ~/dotfiles pull origin
 fi
+if [ -n $CHECKOUT_REF ]; then
+  git -C ~/dotfiles checkout $CHECKOUT_REF
+fi
 
 echo 'Make symbolic links'
 ln -sf ~/dotfiles/.bashrc ~
