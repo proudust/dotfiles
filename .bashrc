@@ -14,9 +14,11 @@ if [ -f /proc/sys/fs/binfmt_misc/WSLInterop ]; then
 fi
 # ----
 
-eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 export GOPATH="~/develop"
 export PATH=$GOPATH/bin:$PATH
+if [ -d '/home/linuxbrew/.linuxbrew' ]; then
+  eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+fi
 
 alias ..="cd .."
 alias cat="bat --paging=never"
