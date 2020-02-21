@@ -3,7 +3,7 @@ name: Check
 on: [push]
 
 jobs:
-  install-win:
+  install-windows:
     runs-on: windows-latest
 
     steps:
@@ -15,8 +15,12 @@ jobs:
         env:
           CHECKOUT_REF: ${{ github.sha }}
 
-  install-linux:
-    runs-on: ubuntu-latest
+  install:
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [macos-latest, ubuntu-latest]
 
     steps:
       - name: Install
