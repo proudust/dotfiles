@@ -71,6 +71,12 @@ else
   ln -sf ~/dotfiles/.vscode/settings.json ~/.config/Code/User/
 fi
 
+if [ -f /proc/sys/fs/binfmt_misc/WSLInterop ] && [ -d /mnt/d/develop ]; then
+  echo '- ~/develop'
+  ln -s /mnt/d/develop ~/develop
+fi
+mkdir -p ~/develop/bin ~/develop/pkg ~/develop/src
+
 if [ -f /proc/sys/fs/binfmt_misc/WSLInterop ]; then
   echo '- /usr/share/fonts/windows'
   sudo ln -s /mnt/c/Windows/Fonts /usr/share/fonts/windows

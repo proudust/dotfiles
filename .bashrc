@@ -1,9 +1,5 @@
 eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
-if [ -f /proc/sys/fs/binfmt_misc/WSLInterop ]; then
-  export GOPATH="/mnt/d/develop"
-else
-  export GOPATH="~/develop"
-fi
+export GOPATH="~/develop"
 export PATH=$GOPATH/bin:$PATH
 
 alias ..="cd .."
