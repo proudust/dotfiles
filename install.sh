@@ -20,7 +20,7 @@ if [ "$OS" == 'Mac' ]; then
   if !(type brew >/dev/null 2>&1); then
     echo '- Homebrew'
     sudo chown -R $USER /usr/local
-    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" </dev/null
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)" </dev/null
   else
     echo '- Homebrew [skip]'
   fi
