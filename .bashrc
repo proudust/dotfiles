@@ -44,15 +44,17 @@ if [ "$TERM" != "linux" ]; then
     PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
 fi
 
-# ctrl + ] : cd repo
-function cd-ghq() {
-  local repo="$( ls -d $(ghq root)/*/*/* | peco)"
-  if [ -n "$repo" ]; then
-    cd "$repo"
-  fi
-}
-bind -x '"\201": cd-ghq'
-bind '"\C-]":"\201\C-m"'
+if [[ -t 1 ]]; then
+  # ctrl + ] : cd repo
+  function cd-ghq() {
+    local repo="$( ls -d $(ghq root)/*/*/* | peco)"
+    if [ -n "$repo" ]; then
+      cd "$repo"
+    fi
+  }
+  bind -x '"\201": cd-ghq'
+  bind '"\C-]":"\201\C-m"'
+fi
 
 if "$IS_WSL"; then
   export DISPLAY=localhost:0.0
