@@ -32,6 +32,8 @@ alias npmt='npm test'
 alias python="python3"
 alias pip="pip3"
 
+eval "$(starship init bash)"
+
 if [[ -t 1 ]]; then
   # ctrl + ] : cd repo
   function cd-ghq() {
