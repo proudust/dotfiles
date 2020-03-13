@@ -87,6 +87,9 @@ else
   ln -sf ~/dotfiles/.vscode/settings.json ~/.config/Code/User/
 fi
 
+echo '- ~/.config/starship.toml'
+ln -sf ~/dotfiles/starship.toml ~/.config/
+
 if "$IS_WSL" && [ -d /mnt/d/develop ]; then
   echo '- ~/develop'
   ln -s /mnt/d/develop ~/develop

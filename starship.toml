@@ -1,0 +1,10 @@
+[directory]
+truncation_length = 0
+
+[git_branch]
+symbol = " "
+
+[time]
+disabled = false
+style = "bright-black"
+format = "🕙  %F %T"
