@@ -32,18 +32,6 @@ alias npmt='npm test'
 alias python="python3"
 alias pip="pip3"
 
-if [ -f $(brew --prefix)/etc/bash_completion ]; then
-  . $(brew --prefix)/etc/bash_completion
-fi
-
-function _update_ps1() {
-    PS1="$(powerline-go -error $?)"
-}
-
-if [ "$TERM" != "linux" ]; then
-    PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
-fi
-
 if [[ -t 1 ]]; then
   # ctrl + ] : cd repo
   function cd-ghq() {
@@ -53,8 +41,8 @@ if [[ -t 1 ]]; then
     fi
   }
   bind -x '"\201": cd-ghq'
-  bind '"\C-]":"\201\C-m"'
 fi
+  bind '"\C-]":"\201\C-m"'
 
 if "$IS_WSL"; then
   export DISPLAY=localhost:0.0
