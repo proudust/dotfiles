@@ -46,10 +46,7 @@ echo
 # ----
 
 # Clone dotfiles repo
-if "$IS_WSL" && [ ! -d $(wslupath -H)/dotfiles/.git ]; then
-  echo 'Link dotfiles repo'
-  ln -sf $(wslupath -H)/dotfiles ~/
-elif [ ! -d ~/dotfiles/.git ]; then
+if [ ! -d ~/dotfiles/.git ]; then
   echo 'Clone dotfiles repo'
   git clone https://github.com/proudust/dotfiles.git ~/dotfiles
 else
@@ -90,10 +87,6 @@ fi
 echo '- ~/.config/starship.toml'
 ln -sf ~/dotfiles/starship.toml ~/.config/
 
-if "$IS_WSL" && [ -d /mnt/d/develop ]; then
-  echo '- ~/develop'
-  ln -s /mnt/d/develop ~/develop
-fi
 mkdir -p ~/develop/bin ~/develop/pkg ~/develop/src
 
 if "$IS_WSL"; then
