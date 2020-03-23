@@ -70,7 +70,7 @@ echo '- ~/.bashrc'
 ln -sf ~/dotfiles/.bashrc ~
 if [ "$OS" = 'Mac' ]; then
   echo '- ~/.bash_profile'
-  printf 'if [ -f ~/.bashrc ]; then\n  . ~/.bashrc\nfi\n' > ~/.bash_profile
+  printf 'if [ -f ~/.bashrc ]; then\n  . ~/.bashrc\nfi\n' >~/.bash_profile
 fi
 
 echo '- ~/.gitconfig'

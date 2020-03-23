@@ -38,7 +38,7 @@ if [[ -t 1 ]]; then
   }
   bind -x '"\201": cd-ghq'
 fi
-  bind '"\C-]":"\201\C-m"'
+bind '"\C-]":"\201\C-m"'
 
 if "$IS_WSL"; then
   export DISPLAY=localhost:0.0
