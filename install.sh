@@ -1,5 +1,7 @@
+#!/bin/sh
+
 # Get execution environment infomations
-if [ "$(uname)" == 'Darwin' ]; then
+if [ "$(uname)" = 'Darwin' ]; then
   OS='Mac'
 elif [ -e /etc/debian_version ]; then
   OS='Debian' # Debian or Ubuntu
@@ -15,16 +17,16 @@ fi
 # ----
 
 # Install dependencies
-if [ "$OS" == 'Mac' ]; then
+if [ "$OS" = 'Mac' ]; then
   echo 'Install dependencies [Mac]'
-  if !(type brew >/dev/null 2>&1); then
+  if ! (type brew >/dev/null 2>&1); then
     echo '- Homebrew'
-    sudo chown -R $USER /usr/local
+    sudo chown -R "$USER" /usr/local
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)" </dev/null
   else
     echo '- Homebrew [skip]'
   fi
-elif [ "$OS" == 'Debian' ]; then
+elif [ "$OS" = 'Debian' ]; then
   echo 'Install dependencies [Linux - Debian]'
   echo '- apt update'
   sudo apt update -qqy
@@ -32,7 +34,7 @@ elif [ "$OS" == 'Debian' ]; then
   sudo apt install -qqy build-essential curl file gcc git
   echo '- apt autoremove'
   sudo apt autoremove -qqy
-  if !(type brew >/dev/null 2>&1); then
+  if ! (type brew >/dev/null 2>&1); then
     echo '- Linuxbrew'
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)" </dev/null
   else
@@ -54,11 +56,11 @@ else
   git -C ~/dotfiles fetch origin
   git -C ~/dotfiles pull origin
 fi
-if [ -z $CHECKOUT_REF ]; then
-  echo "Checkout '`git -C ~/dotfiles rev-parse --abbrev-ref HEAD`'"
+if [ -z "$CHECKOUT_REF" ]; then
+  echo "Checkout '$(git -C ~/dotfiles rev-parse --abbrev-ref HEAD)'"
 else
   echo "Checkout '$CHECKOUT_REF'"
-  git -C ~/dotfiles checkout $CHECKOUT_REF
+  git -C ~/dotfiles checkout "$CHECKOUT_REF"
 fi
 echo
 # ----
@@ -66,15 +68,15 @@ echo
 echo 'Make symbolic links'
 echo '- ~/.bashrc'
 ln -sf ~/dotfiles/.bashrc ~
-if [ "$OS" == 'Mac' ]; then
+if [ "$OS" = 'Mac' ]; then
   echo '- ~/.bash_profile'
-  echo -e 'if [ -f ~/.bashrc ]; then\n  . ~/.bashrc\nfi\n' > ~/.bash_profile
+  printf 'if [ -f ~/.bashrc ]; then\n  . ~/.bashrc\nfi\n' > ~/.bash_profile
 fi
 
 echo '- ~/.gitconfig'
 ln -sf ~/dotfiles/.gitconfig ~
 
-if [ "$OS" == 'Mac' ]; then
+if [ "$OS" = 'Mac' ]; then
   echo '- ~/Library/Application Support/Code/User/settings.json'
   mkdir -p ~/Library/Application Support/Code/User
   ln -sf ~/dotfiles/.vscode/settings.json ~/Library/Application Support/Code/User/
@@ -94,7 +96,7 @@ if "$IS_WSL"; then
   sudo ln -s /mnt/c/Windows/Fonts /usr/share/fonts/windows
 fi
 
-source ~/.bashrc
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 echo
 # ----
 
@@ -104,7 +106,7 @@ brew install bash-completion bat coreutils exa ghq jq peco shellcheck starship u
 echo "- Develop"
 brew install golang npm python3 python@2
 npm install -g npm-check-updates
-if [ "$OS" == 'Mac' ]; then
+if [ "$OS" = 'Mac' ]; then
   echo "- GUI"
   brew cask install font-cica google-backup-and-sync google-chrome google-japanese-ime visual-studio-code
 fi

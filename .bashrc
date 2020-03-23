@@ -1,23 +1,16 @@
-# Get execution environment infomations
-if [ "$(uname)" == 'Darwin' ]; then
-  OS='Mac'
-elif [ -e /etc/debian_version ]; then
-  OS='Debian' # Debian or Ubuntu
-else
-  echo 'Error: This os not supported.'
-  exit 1
-fi
+#!/bin/bash
 
+# Get execution environment infomations
 IS_WSL=false
 if [ -f /proc/sys/fs/binfmt_misc/WSLInterop ]; then
   IS_WSL=true
 fi
 # ----
 
-export GOPATH="~/develop"
+export GOPATH="$HOME/develop"
 export PATH=$GOPATH/bin:$PATH
 if [ -d '/home/linuxbrew/.linuxbrew' ]; then
-  eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 fi
 
 alias ..="cd .."
@@ -37,9 +30,10 @@ eval "$(starship init bash)"
 if [[ -t 1 ]]; then
   # ctrl + ] : cd repo
   function cd-ghq() {
-    local repo="$( ls -d $(ghq root)/*/*/* | peco)"
+    local repo
+    repo="$(ghq list | peco)"
     if [ -n "$repo" ]; then
-      cd "$repo"
+      cd "$repo" || return
     fi
   }
   bind -x '"\201": cd-ghq'
@@ -51,13 +45,14 @@ if "$IS_WSL"; then
   export LIBGL_ALWAYS_INDIRECT=1
 
   function cmd() {
-    cmd.exe /c $@
+    cmd.exe /c "$@"
   }
 
   function code() {
-    if [ $1 ]; then
-      local path=$(wslpath -w $1)
+    if [ "$1" ]; then
+      local path
+      path=$(wslpath -w "$1")
     fi
-    cmd.exe /c code $path
+    cmd.exe /c code "$path"
   }
 fi
