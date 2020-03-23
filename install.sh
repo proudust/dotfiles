@@ -100,7 +100,7 @@ echo
 
 echo "Install packages"
 echo "- Utility"
-brew install bash-completion bat coreutils exa ghq jq peco starship unzip yq zip
+brew install bash-completion bat coreutils exa ghq jq peco shellcheck starship unzip yq zip
 echo "- Develop"
 brew install golang npm python3 python@2
 npm install -g npm-check-updates

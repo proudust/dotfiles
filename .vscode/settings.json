@@ -77,6 +77,7 @@
   "gitlens.views.lineHistory.location": "gitlens",
   "gitlens.views.repositories.location": "gitlens",
   "gitlens.views.search.location": "gitlens",
+  "shellcheck.useWSL": true,
   "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
   "xmlTools.splitAttributesOnFormat": true,
   // JSON Schema Store: http://schemastore.org/api/json/catalog.json
