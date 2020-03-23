@@ -38,5 +38,8 @@ jobs:
         run: |
           sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)" </dev/null
           /home/linuxbrew/.linuxbrew/bin/brew install shellcheck
+          GO111MODULE=on go get mvdan.cc/sh/v3/cmd/shfmt
+      - name: shfmt
+        run: $(go env GOPATH)/bin/shfmt -d .
       - name: ShellCheck
         run: /home/linuxbrew/.linuxbrew/bin/shellcheck *.sh .bashrc
