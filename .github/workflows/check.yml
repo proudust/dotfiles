@@ -28,3 +28,15 @@ jobs:
         run: bash <(curl -sL raw.github.com/proudust/dotfiles/${{ github.sha }}/install.sh)
         env:
           CHECKOUT_REF: ${{ github.sha }}
+
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Init
+        run: |
+          sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)" </dev/null
+          /home/linuxbrew/.linuxbrew/bin/brew install shellcheck
+      - name: ShellCheck
+        run: /home/linuxbrew/.linuxbrew/bin/shellcheck *.sh .bashrc
