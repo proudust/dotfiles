@@ -77,6 +77,8 @@
   "gitlens.views.lineHistory.location": "gitlens",
   "gitlens.views.repositories.location": "gitlens",
   "gitlens.views.search.location": "gitlens",
+  "rust-client.rustupPath": "/home/proudust/.cargo/bin/rustup",
+  "rust-client.enableMultiProjectSetup": true,
   "shellcheck.useWSL": true,
   "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
   "xmlTools.splitAttributesOnFormat": true,

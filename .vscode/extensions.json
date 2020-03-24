@@ -14,6 +14,7 @@
     "ms-vscode-remote.remote-wsl",
     "redhat.vscode-xml",
     "redhat.vscode-yaml",
+    "rust-lang.rust",
     "slevesque.vscode-hexdump",
     "timonwong.shellcheck",
     "Tyriar.sort-lines",

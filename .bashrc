@@ -7,8 +7,17 @@ if [ -f /proc/sys/fs/binfmt_misc/WSLInterop ]; then
 fi
 # ----
 
+# Golang
 export GOPATH="$HOME/develop"
-export PATH=$GOPATH/bin:$PATH
+export PATH="$GOPATH/bin:$PATH"
+
+# Rust
+export CARGO_HOME="$HOME/.cargo"
+export OPENSSL_DIR='/home/linuxbrew/.linuxbrew/opt/openssl@1.1'
+export RUST_BACKTRACE=1
+export PATH="$CARGO_HOME/bin:$PATH"
+
+# Linuxbrew
 if [ -d '/home/linuxbrew/.linuxbrew' ]; then
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 fi
