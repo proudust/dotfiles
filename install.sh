@@ -100,12 +100,16 @@ eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 echo
 # ----
 
-echo "Install packages"
-echo "- Utility"
+echo 'Install packages'
+echo '- Utility'
 brew install bash-completion bat coreutils exa ghq jq peco shellcheck starship unzip yq zip
-echo "- Develop"
-brew install golang npm python3 python@2
+echo '- Golang'
+brew install golang
+echo '- Node (npm, npm-check-updates)'
+brew install npm
 npm install -g npm-check-updates
+echo '- Python (2, 3)'
+brew install python3 python@2
 if [ "$OS" = 'Mac' ]; then
   echo "- GUI"
   brew cask install font-cica google-backup-and-sync google-chrome google-japanese-ime visual-studio-code
