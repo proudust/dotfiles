@@ -31,7 +31,7 @@ if [[ -t 1 ]]; then
   # ctrl + ] : cd repo
   function cd-ghq() {
     local repo
-    repo="$(ghq list | peco)"
+    repo="$(ghq list -p | peco)"
     if [ -n "$repo" ]; then
       cd "$repo" || return
     fi
