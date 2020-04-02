@@ -27,7 +27,8 @@ DEL "%APPDATA%\Code\User\settings.json"
 MKLINK "%APPDATA%\Code\User\settings.json" "%DOTFILES_REPO%\.vscode\settings.json"
 
 @ECHO Enable Windows feature
-powershell -Command "Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux"
+dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
+dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
 
 @ECHO Set registry
 REG IMPORT %DOTFILES_REPO%\registry.reg
