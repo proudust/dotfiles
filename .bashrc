@@ -11,6 +11,10 @@ fi
 export GOPATH="$HOME/develop"
 export PATH="$GOPATH/bin:$PATH"
 
+# Java
+export CPPFLAGS="-I/home/linuxbrew/.linuxbrew/opt/openjdk/include"
+export PATH="/home/linuxbrew/.linuxbrew/opt/openjdk/bin:$PATH"
+
 # Rust
 export CARGO_HOME="$HOME/.cargo"
 export OPENSSL_DIR='/home/linuxbrew/.linuxbrew/opt/openssl@1.1'
@@ -35,6 +39,10 @@ alias python="python3"
 alias pip="pip3"
 
 eval "$(starship init bash)"
+
+if [ -f /home/linuxbrew/.linuxbrew/etc/bash_completion ]; then
+  . /home/linuxbrew/.linuxbrew/etc/bash_completion
+fi
 
 if [[ -t 1 ]]; then
   # ctrl + ] : cd repo

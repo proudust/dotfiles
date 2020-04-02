@@ -105,6 +105,8 @@ echo '- Utility'
 brew install bash-completion bat coreutils exa ghq jq peco shellcheck starship unzip yq zip
 echo '- Golang'
 brew install golang
+echo '- Java'
+brew install java
 echo '- Node (npm, npm-check-updates)'
 brew install npm
 npm install -g npm-check-updates
