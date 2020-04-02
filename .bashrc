@@ -56,12 +56,4 @@ if "$IS_WSL"; then
   function cmd() {
     cmd.exe /c "$@"
   }
-
-  function code() {
-    if [ "$1" ]; then
-      local path
-      path=$(wslpath -w "$1")
-    fi
-    cmd.exe /c code "$path"
-  }
 fi
