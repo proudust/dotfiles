@@ -15,7 +15,8 @@ export PATH="$GOPATH/bin:$PATH"
 export CARGO_HOME="$HOME/.cargo"
 export OPENSSL_DIR='/home/linuxbrew/.linuxbrew/opt/openssl@1.1'
 export RUST_BACKTRACE=1
-export PATH="$CARGO_HOME/bin:$PATH"
+# shellcheck source=/dev/null
+source "$HOME/.cargo/env"
 
 # Linuxbrew
 if [ -d '/home/linuxbrew/.linuxbrew' ]; then
@@ -50,8 +51,15 @@ fi
 bind '"\C-]":"\201\C-m"'
 
 if "$IS_WSL"; then
-  export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2; exit;}'):0.0
+  WINDOWS_ATTR=$(grep nameserver </etc/resolv.conf | awk '{print $2; exit;}')
+  export DISPLAY=$WINDOWS_ATTR:0.0
   export LIBGL_ALWAYS_INDIRECT=1
+
+  export GTK_IM_MODULE=fcitx
+  export QT_IM_MODULE=fcitx
+  export XMODIFIERS="@im=fcitx"
+  export DefaultIMModule=fcitx
+  xset -r 49
 
   function cmd() {
     cmd.exe /c "$@"

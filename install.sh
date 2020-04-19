@@ -171,6 +171,10 @@ if "$IS_WSL"; then
   info 'Make symbolic links to /usr/share/fonts/windows'
   sudo ln -s /mnt/c/Windows/Fonts /usr/share/fonts/windows
 
+  info "Install Mozc"
+  sudo apt-get -qqy install fcitx-mozc fontconfig dbus-x11 x11-xserver-utils
+  sudo fc-cache -fv
+
   info "Install Jetbrains Toolbox"
   curl -sL raw.githubusercontent.com/nagygergo/jetbrains-toolbox-install/master/jetbrains-toolbox.sh | bash
   sudo apt-get install -qqy libnss3 libxcursor1 libasound2 libatk1.0 libatk-bridge2.0
