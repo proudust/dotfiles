@@ -29,6 +29,7 @@ alias npmb='npm run build'
 alias npmd='npm run deploy'
 alias npmi='npm install'
 alias npmid='npm install --save-dev'
+alias npml='npm run lint'
 alias npms='npm start'
 alias npmt='npm test'
 alias python="python3"
