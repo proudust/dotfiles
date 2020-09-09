@@ -53,6 +53,17 @@ if [[ -t 1 ]]; then
     PS1+="\e[m\] "
   }
 
+  # ctrl + o : open repo with code
+  open-repo-with-code() {
+    local repo
+    repo="$(ghq list | peco)"
+    if [ -n "$repo" ]; then
+      code "$(ghq root)/$repo" || return
+    fi
+  }
+  bind -x '"\202": open-repo-with-code'
+  bind '"\C-o":"\202\C-m"'
+
   # ctrl + ] : cd repo
   function cd-ghq() {
     local repo
@@ -62,8 +73,8 @@ if [[ -t 1 ]]; then
     fi
   }
   bind -x '"\201": cd-ghq'
+  bind '"\C-]":"\201\C-m"'
 fi
-bind '"\C-]":"\201\C-m"'
 
 if "$IS_WSL"; then
   export DISPLAY=localhost:0.0
