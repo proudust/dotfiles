@@ -53,10 +53,19 @@ if [[ -t 1 ]]; then
     PS1+="\e[m\] "
   }
 
+  # ctrl + r : command history
+  command-history() {
+    local tac="$(which tac >/dev/null && echo 'tac' || echo 'tail -r')"
+    local cmd="$(history | tac | sed '1d' | cut -c 8- | peco --query \"$READLINE_LINE\")"
+    READLINE_LINE="$cmd"
+    READLINE_POINT="${#cmd}"
+  }
+  bind -x '"\C-r": command-history'
+
   # ctrl + o : open repo with code
   open-repo-with-code() {
     local repo
-    repo="$(ghq list | peco)"
+    repo="$(ghq list | peco --query \"$READLINE_LINE\")"
     if [ -n "$repo" ]; then
       code "$(ghq root)/$repo" || return
     fi
@@ -67,7 +76,7 @@ if [[ -t 1 ]]; then
   # ctrl + ] : cd repo
   function cd-ghq() {
     local repo
-    repo="$(ghq list -p | peco)"
+    repo="$(ghq list -p | peco --query \"$READLINE_LINE\")"
     if [ -n "$repo" ]; then
       cd "$repo" || return
     fi
