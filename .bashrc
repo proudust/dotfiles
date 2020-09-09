@@ -70,8 +70,7 @@ if [[ -t 1 ]]; then
       code "$(ghq root)/$repo" || return
     fi
   }
-  bind -x '"\202": open-repo-with-code'
-  bind '"\C-o":"\202\C-m"'
+  bind -x '"\C-o": open-repo-with-code'
 
   # ctrl + ] : cd repo
   function cd-ghq() {
