@@ -35,9 +35,24 @@ alias npmt='npm test'
 alias python="python3"
 alias pip="pip3"
 
-eval "$(starship init bash)"
-
 if [[ -t 1 ]]; then
+  # Prompt
+  PROMPT_COMMAND=prompt-command
+  prompt-command() {
+    local exitcode="$?"
+
+    local darkgray="\[\e[1;30m\]"
+    local lightblue="\[\e[1;32m\]"
+    local lightgreen="\[\e[1;32m\]"
+    local lightred="\[\e[1;31m\]"
+
+    PS1='\n'
+    PS1+="$lightblue\w\n"
+    PS1+="$darkgray🕙 \$(date '+%Y/%m/%d %H:%M:%S') "
+    [ $exitcode == 0 ] && PS1+="$lightgreen$" || PS1+="$lightred$"
+    PS1+="\e[m\] "
+  }
+
   # ctrl + ] : cd repo
   function cd-ghq() {
     local repo
