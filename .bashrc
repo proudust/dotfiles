@@ -23,8 +23,8 @@ if [ -d '/home/linuxbrew/.linuxbrew' ]; then
 fi
 
 alias ..="cd .."
-alias cat="bat --paging=never"
-alias ls="exa"
+type bat >/dev/null 2>&1 && alias cat="bat --paging=never"
+type exa >/dev/null 2>&1 && alias ls="exa"
 alias npmb='npm run build'
 alias npmd='npm run deploy'
 alias npmi='npm install'
