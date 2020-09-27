@@ -1,6 +1,17 @@
 #!/bin/bash
 
 # Get execution environment infomations
+if [ "$(uname)" = 'Darwin' ]; then
+  OS='Mac'
+elif [ "$(expr substr $(uname -s) 1 5)" == "MINGW" ]; then
+  OS='Windows'
+elif [ -e /etc/debian_version ]; then
+  OS='Debian' # Debian or Ubuntu
+else
+  echo 'Error: This os not supported.'
+  exit 1
+fi
+
 IS_WSL=false
 if [ -f /proc/sys/fs/binfmt_misc/WSLInterop ]; then
   IS_WSL=true
@@ -88,8 +99,14 @@ fi
 if "$IS_WSL"; then
   export DISPLAY=localhost:0.0
   export LIBGL_ALWAYS_INDIRECT=1
+fi
 
+if "$IS_WSL" || [ "$OS" = 'Windows' ]; then
   function cmd() {
     cmd.exe /c "$@"
+  }
+
+  function winget() {
+    cmd.exe /c "winget $@"
   }
 fi
