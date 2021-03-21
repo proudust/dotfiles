@@ -43,11 +43,6 @@ choco pin add -n=minecraft
 choco pin add -n=steam
 choco pin add -n=origin
 
-@ECHO Install VSCode extensions
-FOR /f "usebackq delims=" %%a in (`jq -r ".recommendations[]" %DOTFILES_REPO%\.vscode\extensions.json`) DO (
-  code --install-extension %%a
-)
-
 @ECHO Uninstall unnecessary apps
 powershell "Get-AppxPackage king.com.CandyCrushSodaSaga | Remove-AppxPackage"
 powershell "Get-AppxPackage A278AB0D.MarchofEmpires | Remove-AppxPackage"

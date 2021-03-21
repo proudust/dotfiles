@@ -76,16 +76,6 @@ fi
 echo '- ~/.gitconfig'
 ln -sf ~/dotfiles/.gitconfig ~
 
-if [ "$OS" = 'Mac' ]; then
-  echo '- ~/Library/Application Support/Code/User/settings.json'
-  mkdir -p ~/Library/Application Support/Code/User
-  ln -sf ~/dotfiles/.vscode/settings.json ~/Library/Application Support/Code/User/
-else
-  echo '- ~/.config/Code/User/settings.json'
-  mkdir -p ~/.config/Code/User
-  ln -sf ~/dotfiles/.vscode/settings.json ~/.config/Code/User/
-fi
-
 echo '- ~/.config/starship.toml'
 ln -sf ~/dotfiles/starship.toml ~/.config/
 
