@@ -3,7 +3,7 @@
 # Get execution environment infomations
 if [ "$(uname)" = 'Darwin' ]; then
   OS='Mac'
-elif [ "$(expr substr $(uname -s) 1 5)" == "MINGW" ]; then
+elif [ "$(uname -s | head -c 5)" == "MINGW" ]; then
   OS='Windows'
 elif [ -e /etc/debian_version ]; then
   OS='Debian' # Debian or Ubuntu
@@ -107,6 +107,6 @@ if "$IS_WSL" || [ "$OS" = 'Windows' ]; then
   }
 
   function winget() {
-    cmd.exe /c "winget $@"
+    cmd.exe /c "winget $*"
   }
 fi
