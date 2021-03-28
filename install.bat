@@ -23,8 +23,15 @@ if defined CHECKOUT_REF (
 )
 
 @ECHO Make symbolic links
+@REM git
 DEL "%HOMEPATH%\.gitconfig"
 MKLINK "%HOMEPATH%\.gitconfig" "%DOTFILES_REPO%\.gitconfig"
+@REM winget
+MKDIR "%LOCALAPPDATA%\Packages\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe\LocalState" > NUL 2>&1
+DEL "%LOCALAPPDATA%\Packages\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe\LocalState\settings.json"
+MKLINK ^
+  "%LOCALAPPDATA%\Packages\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe\LocalState\settings.json" ^
+  "%HOMEDRIVE%%HOMEPATH%\dotfiles\windows\winget\settings.json"
 
 @ECHO Enable Windows feature
 dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
