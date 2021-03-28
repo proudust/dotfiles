@@ -1,8 +1,15 @@
 @ECHO OFF
 
-@ECHO Check admin
+REM Require execution as administrator
 OPENFILES > NUL 2>&1
-IF NOT %ERRORLEVEL% EQU 0 GOTO ERROR_NOT_ADMIN
+IF NOT %ERRORLEVEL% EQU 0 (
+  ECHO Reexecute it batch as administrator
+  SETLOCAL
+  SET "ME=%~dpnx0"
+  SET "ARG=%*"
+  POWERSHELL "start-process -FilePath $env:ME -ArgumentList '$env:ARG' -verb runas"
+  EXIT /B
+)
 
 @ECHO Clone dotfiles repo
 SET DOTFILES_REPO=%HOMEDRIVE%%HOMEPATH%\dotfiles
@@ -42,11 +49,3 @@ IF EXIST %SystemRoot%\SysWOW64\OneDriveSetup.exe (
   RD "%LocalAppData%\Microsoft\OneDrive" /Q /S
   RD "%ProgramData%\Microsoft OneDrive" /Q /S
 )
-
-GOTO END
-
-:ERROR_NOT_ADMIN
-echo ERROR: Not admin user.
-GOTO END
-
-:END
