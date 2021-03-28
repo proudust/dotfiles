@@ -18,9 +18,6 @@ if defined CHECKOUT_REF (
 @ECHO Make symbolic links
 DEL "%HOMEPATH%\.gitconfig"
 MKLINK "%HOMEPATH%\.gitconfig" "%DOTFILES_REPO%\.gitconfig"
-MKDIR "%APPDATA%\Code\User" > NUL 2>&1
-DEL "%APPDATA%\Code\User\settings.json"
-MKLINK "%APPDATA%\Code\User\settings.json" "%DOTFILES_REPO%\.vscode\settings.json"
 
 @ECHO Enable Windows feature
 dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
