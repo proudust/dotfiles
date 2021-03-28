@@ -26,6 +26,12 @@ if defined CHECKOUT_REF (
 @REM git
 DEL "%HOMEPATH%\.gitconfig"
 MKLINK "%HOMEPATH%\.gitconfig" "%DOTFILES_REPO%\.gitconfig"
+REM WindowsTerminal
+MKDIR "%LOCALAPPDATA%\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState" > NUL 2>&1
+DEL "%LOCALAPPDATA%\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json"
+MKLINK ^
+  "%LOCALAPPDATA%\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json" ^
+  "%HOMEDRIVE%%HOMEPATH%\dotfiles\windows\terminal\settings.json"
 @REM winget
 MKDIR "%LOCALAPPDATA%\Packages\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe\LocalState" > NUL 2>&1
 DEL "%LOCALAPPDATA%\Packages\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe\LocalState\settings.json"
