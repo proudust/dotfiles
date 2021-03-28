@@ -44,7 +44,7 @@ dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux 
 dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
 
 @ECHO Set registry
-REG IMPORT %DOTFILES_REPO%\registry.reg
+REG IMPORT %DOTFILES_REPO%\windows\registry.reg
 
 @ECHO Uninstall unnecessary apps
 powershell "Get-AppxPackage king.com.CandyCrushSodaSaga | Remove-AppxPackage"
