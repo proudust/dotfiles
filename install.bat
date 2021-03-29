@@ -46,19 +46,42 @@ dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /nores
 @ECHO Set registry
 REG IMPORT %DOTFILES_REPO%\windows\registry.reg
 
-@ECHO Uninstall unnecessary apps
-powershell "Get-AppxPackage king.com.CandyCrushSodaSaga | Remove-AppxPackage"
-powershell "Get-AppxPackage A278AB0D.MarchofEmpires | Remove-AppxPackage"
-powershell "Get-AppxPackage 828B5831.HiddenCityMysteryofShadows | Remove-AppxPackage"
-powershell "Get-AppxPackage DolbyLaboratories.DolbyAccess | Remove-AppxPackage"
-powershell "Get-AppxPackage Microsoft.Office.OneNote | Remove-AppxPackage"
-powershell "Get-AppxPackage Microsoft.OneConnect | Remove-AppxPackage"
+WHERE /Q winget
+IF %ERRORLEVEL% == 0 (
+  ECHO Install applications using winget
+  winget install -h -e 7zip.7zip
+  winget install -h -e Docker.DockerDesktop
+  winget install -h -e Git.Git
+  winget install -h -e Microsoft.PowerToys
+  winget install -e Microsoft.VisualStudioCode-System-x64 --override "/mergetasks=""addcontextmenufiles,addcontextmenufolders,associatewithfiles,addtopath"""
+  winget install -h -e Microsoft.WindowsTerminal
+  winget install -h -e VivaldiTechnologies.Vivaldi
 
-IF EXIST %SystemRoot%\SysWOW64\OneDriveSetup.exe (
-  @ECHO Uninstall OneDrive
-  TASKKILL /f /im OneDrive.exe
-  %SystemRoot%\SysWOW64\OneDriveSetup.exe /uninstall
-  RD "%UserProfile%\OneDrive" /Q /S
-  RD "%LocalAppData%\Microsoft\OneDrive" /Q /S
-  RD "%ProgramData%\Microsoft OneDrive" /Q /S
+  ECHO Uninstall preinstall applications using winget
+  winget uninstall Microsoft.549981C3F5F10_8wekyb3d8bbwe
+  winget uninstall Microsoft.Getstarted_8wekyb3d8bbwe
+  winget uninstall Microsoft.Microsoft3DViewer_8wekyb3d8bbwe
+  winget uninstall Microsoft.MicrosoftOfficeHub_8wekyb3d8bbwe
+  winget uninstall Microsoft.MixedReality.Portal_8wekyb3d8bbwe
+  winget uninstall Microsoft.MSPaint_8wekyb3d8bbwe
+  winget uninstall Microsoft.Office.OneNote_8wekyb3d8bbwe
+  winget uninstall Microsoft.People_8wekyb3d8bbwe
+  winget uninstall Microsoft.SkypeApp_kzf8qxf38zg5c
+  winget uninstall Microsoft.Wallet_8wekyb3d8bbwe
+  winget uninstall Microsoft.WindowsCamera_8wekyb3d8bbwe
+  winget uninstall microsoft.windowscommunicationsapps_8wekyb3d8bbwe
+  winget uninstall Microsoft.WindowsMaps_8wekyb3d8bbwe
+  winget uninstall Microsoft.Xbox.TCUI_8wekyb3d8bbwe
+  winget uninstall Microsoft.XboxApp_8wekyb3d8bbwe
+  winget uninstall Microsoft.XboxGameOverlay_8wekyb3d8bbwe
+  winget uninstall Microsoft.XboxGamingOverlay_8wekyb3d8bbwe
+  winget uninstall Microsoft.XboxIdentityProvider_8wekyb3d8bbwe
+  winget uninstall Microsoft.XboxSpeechToTextOverlay_8wekyb3d8bbwe
+  winget uninstall Microsoft.YourPhone_8wekyb3d8bbwe
+  winget uninstall OneDriveSetup.exe
+  winget uninstall SpotifyAB.SpotifyMusic_zpdnekdrzrea0
+) ELSE (
+  ECHO Error: winget is not installed.
 )
+
+EXIT /B 0
