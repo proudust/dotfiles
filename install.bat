@@ -53,7 +53,7 @@ IF %ERRORLEVEL% == 0 (
   winget install -h -e Docker.DockerDesktop
   winget install -h -e Git.Git
   winget install -h -e Microsoft.PowerToys
-  winget install -e Microsoft.VisualStudioCode-System-x64 --override "/mergetasks=""addcontextmenufiles,addcontextmenufolders,associatewithfiles,addtopath"""
+  winget install -e Microsoft.VisualStudioCode.System-x64 --override "/verysilent /mergetasks=""addcontextmenufiles,addcontextmenufolders,associatewithfiles,addtopath"""
   winget install -h -e Microsoft.WindowsTerminal
   winget install -h -e VivaldiTechnologies.Vivaldi
 
