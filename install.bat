@@ -11,6 +11,20 @@ IF NOT %ERRORLEVEL% EQU 0 (
   EXIT /B
 )
 
+REM Require git
+WHERE /Q git
+IF NOT %ERRORLEVEL% == 0 (
+  ECHO Install Git for Windows
+  winget install -h -e Git.Git
+
+  ECHO Reexecute it batch as administrator
+  SETLOCAL
+  SET "ME=%~dpnx0"
+  SET "ARG=%*"
+  POWERSHELL "start-process -FilePath $env:ME -ArgumentList '$env:ARG' -verb runas"
+  EXIT /B
+)
+
 @ECHO Clone dotfiles repo
 SET DOTFILES_REPO=%HOMEDRIVE%%HOMEPATH%\dotfiles
 IF NOT EXIST %DOTFILES_REPO%\.git (
