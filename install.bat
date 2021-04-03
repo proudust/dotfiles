@@ -3,12 +3,7 @@
 REM Require execution as administrator
 OPENFILES > NUL 2>&1
 IF NOT %ERRORLEVEL% EQU 0 (
-  ECHO Reexecute it batch as administrator
-  SETLOCAL
-  SET "ME=%~dpnx0"
-  SET "ARG=%*"
-  POWERSHELL "start-process -FilePath $env:ME -ArgumentList '$env:ARG' -verb runas"
-  EXIT /B
+  CALL :rerun
 )
 
 REM Require winget
@@ -21,13 +16,13 @@ IF NOT %ERRORLEVEL% == 0 (
   SET /P DOWNLOAD_URL=<%TEMP%\winget_latest_url.txt
   BITSADMIN /TRANSFER WINGET %DOWNLOAD_URL% %TEMP%\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.appxbundle
   POWERSHELL "Add-AppxPackage %TEMP%\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.appxbundle"
+  IF NOT %ERRORLEVEL% == 0 (
+    ECHO Error: Windows Package Manager install failed
+    ECHO Error: Windows Package Manager is required to perform the installation
+    EXIT /B 1
+  )
 
-  ECHO Reexecute it batch as administrator
-  SETLOCAL
-  SET "ME=%~dpnx0"
-  SET "ARG=%*"
-  POWERSHELL "start-process -FilePath $env:ME -ArgumentList '$env:ARG' -verb runas"
-  EXIT /B
+  CALL :rerun
 )
 
 REM Require git
@@ -35,13 +30,13 @@ WHERE /Q git
 IF NOT %ERRORLEVEL% == 0 (
   ECHO Install Git for Windows
   winget install -h -e Git.Git
+  IF NOT %ERRORLEVEL% == 0 (
+    ECHO Error: Git for Windows install failed
+    ECHO Error: Git for Windows is required to perform the installation
+    EXIT /B 1
+  )
 
-  ECHO Reexecute it batch as administrator
-  SETLOCAL
-  SET "ME=%~dpnx0"
-  SET "ARG=%*"
-  POWERSHELL "start-process -FilePath $env:ME -ArgumentList '$env:ARG' -verb runas"
-  EXIT /B
+  CALL :rerun
 )
 
 @ECHO Clone dotfiles repo
@@ -118,3 +113,18 @@ IF %ERRORLEVEL% == 0 (
 )
 
 EXIT /B 0
+
+:rerun
+ECHO INFO: Rerun batch
+OPENFILES > NUL 2>&1
+IF NOT %ERRORLEVEL% EQU 0 (
+  SETLOCAL
+  SET "ME=%~dpnx0"
+  SET "ARG=%*"
+  POWERSHELL "start-process -FilePath $env:ME -ArgumentList '$env:ARG' -verb runas"
+  EXIT /B
+) ELSE (
+  CALL "%~dpnx0"
+  EXIT /B %ERRORLEVEL%
+)
+EXIT /B 1
