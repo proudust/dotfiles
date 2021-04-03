@@ -11,6 +11,25 @@ IF NOT %ERRORLEVEL% EQU 0 (
   EXIT /B
 )
 
+REM Require winget
+WHERE /Q winget
+IF NOT %ERRORLEVEL% == 0 (
+  ECHO Install Windows Package Manager
+  POWERSHELL ^
+    "(Invoke-RestMethod 'https://api.github.com/repos/microsoft/winget-cli/releases/latest').assets[1].browser_download_url" ^
+    >%TEMP%\winget_latest_url.txt
+  SET /P DOWNLOAD_URL=<%TEMP%\winget_latest_url.txt
+  BITSADMIN /TRANSFER WINGET %DOWNLOAD_URL% %TEMP%\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.appxbundle
+  POWERSHELL "Add-AppxPackage %TEMP%\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.appxbundle"
+
+  ECHO Reexecute it batch as administrator
+  SETLOCAL
+  SET "ME=%~dpnx0"
+  SET "ARG=%*"
+  POWERSHELL "start-process -FilePath $env:ME -ArgumentList '$env:ARG' -verb runas"
+  EXIT /B
+)
+
 REM Require git
 WHERE /Q git
 IF NOT %ERRORLEVEL% == 0 (
