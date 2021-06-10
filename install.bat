@@ -38,8 +38,11 @@ if defined CHECKOUT_REF (
 
 @ECHO Make symbolic links
 @REM git
-DEL "%HOMEPATH%\.gitconfig"
-MKLINK "%HOMEPATH%\.gitconfig" "%DOTFILES_REPO%\.gitconfig"
+DEL "%HOMEDRIVE%%HOMEPATH%\.gitconfig"
+MKLINK "%HOMEDRIVE%%HOMEPATH%\.gitconfig" "%DOTFILES_REPO%\.gitconfig"
+MKDIR "%HOMEDRIVE%%HOMEPATH%\.config\git" > NUL 2>&1
+DEL "%HOMEDRIVE%%HOMEPATH%\.config\git\ignore"
+MKLINK "%HOMEDRIVE%%HOMEPATH%\.config\git\ignore" "%DOTFILES_REPO%\.gitignore"
 REM WindowsTerminal
 MKDIR "%LOCALAPPDATA%\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState" > NUL 2>&1
 DEL "%LOCALAPPDATA%\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json"
