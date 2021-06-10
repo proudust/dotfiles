@@ -76,6 +76,9 @@ fi
 echo '- ~/.gitconfig'
 ln -sf ~/dotfiles/.gitconfig ~
 
+echo '- ~/.config/git/ignore'
+ln -sf ~/dotfiles/.gitignore ~/.config/git/ignore
+
 echo '- ~/.config/starship.toml'
 ln -sf ~/dotfiles/starship.toml ~/.config/
 

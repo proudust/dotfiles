@@ -4,7 +4,6 @@
 	name = Proudust
 	email = proudust@gmail.com
 [core]
-	excludesfile = ~/dotfiles/.gitignore
 	autocrlf = false
 	fscache = true
 	preloadindex = true
