@@ -11,6 +11,14 @@ IF NOT %ERRORLEVEL% EQU 0 (
   EXIT /B
 )
 
+REM Require winget
+WHERE /Q winget
+IF NOT %ERRORLEVEL% == 0 (
+  ECHO Error: require winget
+  START https://github.com/microsoft/winget-cli#installing-the-client
+  EXIT /B
+)
+
 REM Require git
 WHERE /Q git
 IF NOT %ERRORLEVEL% == 0 (
