@@ -95,8 +95,9 @@ echo '- Utility'
 brew install bash-completion bat coreutils exa ghq jq peco shellcheck starship unzip yq zip
 echo '- Golang'
 brew install golang
-echo '- Node (npm, npm-check-updates)'
-brew install npm
+echo '- Node.js (with volta, npm-check-updates)'
+brew install volta
+volta install node@lts
 npm install -g npm-check-updates
 echo '- Python (2, 3)'
 brew install python3 python@2

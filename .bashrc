@@ -22,6 +22,10 @@ fi
 export GOPATH="$HOME/develop"
 export PATH="$GOPATH/bin:$PATH"
 
+# Node.js (with Volta)
+export VOLTA_HOME="$HOME/.volta"
+export PATH="$VOLTA_HOME/bin:$PATH"
+
 # Rust
 export CARGO_HOME="$HOME/.cargo"
 export OPENSSL_DIR='/home/linuxbrew/.linuxbrew/opt/openssl@1.1'
