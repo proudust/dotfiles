@@ -65,7 +65,6 @@ MKLINK ^
   "%HOMEDRIVE%%HOMEPATH%\dotfiles\windows\winget\settings.json"
 
 @ECHO Enable Windows feature
-dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
 dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
 
 @ECHO Set registry
@@ -81,6 +80,7 @@ IF %ERRORLEVEL% == 0 (
   winget install -e Microsoft.VisualStudioCode.System-x64 --override "/verysilent /mergetasks=""addcontextmenufiles,addcontextmenufolders,associatewithfiles,addtopath"""
   winget install -h -e Microsoft.WindowsTerminal
   winget install -h -e VivaldiTechnologies.Vivaldi
+  winget install "Windows Subsystem for Linux" --source msstore --accept-source-agreements --accept-package-agreements
 
   ECHO Uninstall preinstall applications using winget
   winget uninstall Microsoft.549981C3F5F10_8wekyb3d8bbwe
