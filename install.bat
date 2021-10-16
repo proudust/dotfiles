@@ -23,9 +23,9 @@ REM Require git
 WHERE /Q git
 IF NOT %ERRORLEVEL% == 0 (
   ECHO Install Git for Windows
-  winget install -h -e Git.Git
+  winget install -h -e Git.Git --source winget
 
-  ECHO Reexecute it batch as administrator
+  ECHO Re-execute it batch as administrator
   SETLOCAL
   SET "ME=%~dpnx0"
   SET "ARG=%*"
@@ -33,7 +33,7 @@ IF NOT %ERRORLEVEL% == 0 (
   EXIT /B
 )
 
-@ECHO Clone dotfiles repo
+ECHO Clone dotfiles repo
 SET DOTFILES_REPO=%HOMEDRIVE%%HOMEPATH%\dotfiles
 IF NOT EXIST %DOTFILES_REPO%\.git (
   git clone https://github.com/proudust/dotfiles.git %DOTFILES_REPO%
@@ -73,13 +73,13 @@ REG IMPORT %DOTFILES_REPO%\windows\registry.reg
 WHERE /Q winget
 IF %ERRORLEVEL% == 0 (
   ECHO Install applications using winget
-  winget install -h -e 7zip.7zip
-  winget install -h -e Docker.DockerDesktop
-  winget install -h -e Git.Git
-  winget install -h -e Microsoft.PowerToys
-  winget install -e Microsoft.VisualStudioCode.System-x64 --override "/verysilent /mergetasks=""addcontextmenufiles,addcontextmenufolders,associatewithfiles,addtopath"""
-  winget install -h -e Microsoft.WindowsTerminal
-  winget install -h -e VivaldiTechnologies.Vivaldi
+  winget install -h -e 7zip.7zip --source winget
+  winget install -h -e Docker.DockerDesktop --source winget
+  winget install -h -e Git.Git --source winget
+  winget install -e Microsoft.VisualStudioCode.System-x64 --source winget --override "/verysilent /mergetasks=""addcontextmenufiles,addcontextmenufolders,associatewithfiles,addtopath"""
+  winget install -h -e VivaldiTechnologies.Vivaldi --source winget
+  winget install "Microsoft PowerToys" --source msstore --accept-source-agreements --accept-package-agreements
+  winget install "Windows Terminal" --source msstore --accept-source-agreements --accept-package-agreements
   winget install "Windows Subsystem for Linux" --source msstore --accept-source-agreements --accept-package-agreements
 
   ECHO Uninstall preinstall applications using winget
