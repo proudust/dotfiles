@@ -11,12 +11,21 @@
   [App Installer](https://www.microsoft.com/store/productId/9NBLGGH4NNS1)
   from the Microsoft Store.  
 
-2. コマンドプロンプトで以下のコマンドを実行します。  
-   Execute the following command at command prompt.  
+2. コマンドプロンプトまたは Powershell で以下のコマンドを実行します。  
+   Execute the following command at the Command Prompt.  
+
+*コマンドプロンプト (Command Prompt):*
 
 ```bat
-bitsadmin /TRANSFER DOTFILES https://raw.github.com/proudust/dotfiles/master/install.bat %TEMP%\install.bat
+BITSADMIN /TRANSFER DOTFILES https://raw.github.com/proudust/dotfiles/master/install.bat %TEMP%\install.bat
 %TEMP%\install.bat
+```
+
+*Powershell:*
+
+```ps1
+Invoke-WebRequest https://raw.github.com/proudust/dotfiles/master/install.bat -OutFile "$env:TEMP\install.bat"
+Start-Process -FilePath "$env:TEMP\install.bat" -verb runas
 ```
 
 ### Linux
