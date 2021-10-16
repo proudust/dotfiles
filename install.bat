@@ -82,13 +82,11 @@ IF %ERRORLEVEL% == 0 (
   winget install "Windows Terminal" --source msstore --accept-source-agreements --accept-package-agreements
   winget install "Windows Subsystem for Linux" --source msstore --accept-source-agreements --accept-package-agreements
 
-  ECHO Uninstall preinstall applications using winget
+  ECHO Uninstall pre-install applications using winget
+  @REM Cortana
   winget uninstall Microsoft.549981C3F5F10_8wekyb3d8bbwe
   winget uninstall Microsoft.Getstarted_8wekyb3d8bbwe
-  winget uninstall Microsoft.Microsoft3DViewer_8wekyb3d8bbwe
   winget uninstall Microsoft.MicrosoftOfficeHub_8wekyb3d8bbwe
-  winget uninstall Microsoft.MixedReality.Portal_8wekyb3d8bbwe
-  winget uninstall Microsoft.MSPaint_8wekyb3d8bbwe
   winget uninstall Microsoft.Office.OneNote_8wekyb3d8bbwe
   winget uninstall Microsoft.People_8wekyb3d8bbwe
   winget uninstall Microsoft.SkypeApp_kzf8qxf38zg5c
@@ -96,12 +94,6 @@ IF %ERRORLEVEL% == 0 (
   winget uninstall Microsoft.WindowsCamera_8wekyb3d8bbwe
   winget uninstall microsoft.windowscommunicationsapps_8wekyb3d8bbwe
   winget uninstall Microsoft.WindowsMaps_8wekyb3d8bbwe
-  winget uninstall Microsoft.Xbox.TCUI_8wekyb3d8bbwe
-  winget uninstall Microsoft.XboxApp_8wekyb3d8bbwe
-  winget uninstall Microsoft.XboxGameOverlay_8wekyb3d8bbwe
-  winget uninstall Microsoft.XboxGamingOverlay_8wekyb3d8bbwe
-  winget uninstall Microsoft.XboxIdentityProvider_8wekyb3d8bbwe
-  winget uninstall Microsoft.XboxSpeechToTextOverlay_8wekyb3d8bbwe
   winget uninstall Microsoft.YourPhone_8wekyb3d8bbwe
   winget uninstall OneDriveSetup.exe
   winget uninstall SpotifyAB.SpotifyMusic_zpdnekdrzrea0
