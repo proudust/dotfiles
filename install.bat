@@ -14,8 +14,8 @@ IF NOT %ERRORLEVEL% EQU 0 (
 REM Require winget
 WHERE /Q winget
 IF NOT %ERRORLEVEL% == 0 (
-  ECHO Error: require winget
-  START https://github.com/microsoft/winget-cli#installing-the-client
+  ECHO Error: Please install or update the App Installer from the Microsoft Store
+  START https://www.microsoft.com/store/productId/9NBLGGH4NNS1
   EXIT /B
 )
 

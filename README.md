@@ -4,9 +4,13 @@
 
 ### Windows
 
-1. [*Windows Package Manager Client (aka winget.exe)*](https://github.com/microsoft/winget-cli#installing-the-client)
-   をインストールします。  
-   Install [*Windows Package Manager Client (aka winget.exe)*](https://github.com/microsoft/winget-cli#installing-the-client).  
+1. Microsoft Store から
+  [App Installer](https://www.microsoft.com/store/productId/9NBLGGH4NNS1)
+  をインストールまたは更新します。  
+  Install or update the
+  [App Installer](https://www.microsoft.com/store/productId/9NBLGGH4NNS1)
+  from the Microsoft Store.  
+
 2. コマンドプロンプトで以下のコマンドを実行します。  
    Execute the following command at command prompt.  
 
