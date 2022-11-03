@@ -110,7 +110,7 @@ rustup-init
 "$HOME/.cargo/bin/rustup" target add x86_64-unknown-linux-musl
 if [ "$OS" = 'Mac' ]; then
   echo "- GUI"
-  brew cask install font-cica google-backup-and-sync google-chrome google-japanese-ime visual-studio-code
+  brew install --cask font-cica google-backup-and-sync google-chrome google-japanese-ime visual-studio-code
 fi
 echo
 # ----
