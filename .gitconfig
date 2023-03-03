@@ -1,8 +1,8 @@
-[ghq]
-	root = ~/develop/src
 [user]
 	name = Proudust
 	email = proudust@gmail.com
+[include]
+	path = ~/.gitconfig_shared
 [core]
 	autocrlf = false
 	fscache = true

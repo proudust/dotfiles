@@ -48,6 +48,7 @@ if defined CHECKOUT_REF (
 @REM git
 DEL "%HOMEDRIVE%%HOMEPATH%\.gitconfig"
 MKLINK "%HOMEDRIVE%%HOMEPATH%\.gitconfig" "%DOTFILES_REPO%\.gitconfig"
+MKLINK "%HOMEDRIVE%%HOMEPATH%\.gitconfig_shared" "%DOTFILES_REPO%\.gitconfig_win"
 MKDIR "%HOMEDRIVE%%HOMEPATH%\.config\git" > NUL 2>&1
 DEL "%HOMEDRIVE%%HOMEPATH%\.config\git\ignore"
 MKLINK "%HOMEDRIVE%%HOMEPATH%\.config\git\ignore" "%DOTFILES_REPO%\.gitignore"
