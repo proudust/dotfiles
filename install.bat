@@ -7,13 +7,13 @@ IF NOT %ERRORLEVEL% EQU 0 (
   SETLOCAL
   SET "ME=%~dpnx0"
   SET "ARG=%*"
-  POWERSHELL "start-process -FilePath $env:ME -ArgumentList '$env:ARG' -verb runas"
+  POWERSHELL "$env:Path = [System.Environment]::GetEnvironmentVariable('Path','Machine') + ';' + [System.Environment]::GetEnvironmentVariable('Path','User') ; Start-Process -FilePath $env:ME -ArgumentList '$env:ARG' -verb runas"
   EXIT /B
 )
 
 REM Require winget
 WHERE /Q winget
-IF NOT %ERRORLEVEL% == 0 IF DEFINED %SKIP_WINGET_CHECK% (
+IF NOT %ERRORLEVEL% == 0 IF NOT DEFINED SKIP_WINGET_CHECK (
   ECHO Error: Please install or update the App Installer from the Microsoft Store
   START https://www.microsoft.com/store/productId/9NBLGGH4NNS1
   EXIT /B
@@ -29,7 +29,7 @@ IF NOT %ERRORLEVEL% == 0 (
   SETLOCAL
   SET "ME=%~dpnx0"
   SET "ARG=%*"
-  POWERSHELL "start-process -FilePath $env:ME -ArgumentList '$env:ARG' -verb runas"
+  POWERSHELL "$env:Path = [System.Environment]::GetEnvironmentVariable('Path','Machine') + ';' + [System.Environment]::GetEnvironmentVariable('Path','User') ; Start-Process -FilePath $env:ME -ArgumentList '$env:ARG' -verb runas"
   EXIT /B
 )
 
