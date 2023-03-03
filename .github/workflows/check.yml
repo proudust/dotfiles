@@ -3,6 +3,19 @@ name: Check
 on: [push]
 
 jobs:
+  install-windows:
+    runs-on: windows-latest
+
+    steps:
+      - name: Install
+        run: |
+          bitsadmin /TRANSFER DOTFILES https://raw.github.com/proudust/dotfiles/${{ github.sha }}/install.bat %TEMP%\install.bat
+          %TEMP%\install.bat
+        shell: cmd
+        env:
+          CHECKOUT_REF: ${{ github.sha }}
+          SKIP_WINGET_CHECK: true
+
   install:
     runs-on: ${{ matrix.os }}
 

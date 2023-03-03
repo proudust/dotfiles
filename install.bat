@@ -13,7 +13,7 @@ IF NOT %ERRORLEVEL% EQU 0 (
 
 REM Require winget
 WHERE /Q winget
-IF NOT %ERRORLEVEL% == 0 (
+IF NOT %ERRORLEVEL% == 0 IF DEFINED %SKIP_WINGET_CHECK% (
   ECHO Error: Please install or update the App Installer from the Microsoft Store
   START https://www.microsoft.com/store/productId/9NBLGGH4NNS1
   EXIT /B
