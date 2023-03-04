@@ -5,7 +5,10 @@
 	path = ~/.gitconfig_shared
 [core]
 	autocrlf = false
+	editor = code --wait
 	fscache = true
 	preloadindex = true
 [fetch]
 	prune = true
+[rebase]
+	autostash = true
