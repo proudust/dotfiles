@@ -75,7 +75,7 @@ fi
 
 echo '- ~/.gitconfig'
 ln -sf ~/dotfiles/.gitconfig ~
-ln -sf ~/dotfiles/.gitconfig_shared ~/.gitconfig_linux_mac
+ln -sf ~/dotfiles/.gitconfig_linux_mac ~/.gitconfig_shared
 
 echo '- ~/.config/git/ignore'
 ln -sf ~/dotfiles/.gitignore ~/.config/git/ignore
