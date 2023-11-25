@@ -16,35 +16,37 @@ if [ -f /proc/sys/fs/binfmt_misc/WSLInterop ]; then
 fi
 # ----
 
-# Install dependencies
-if [ "$OS" = 'Mac' ]; then
-  echo 'Install dependencies [Mac]'
-  if ! (type brew >/dev/null 2>&1); then
-    echo '- Homebrew'
-    sudo chown -R "$USER" /usr/local
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)" </dev/null
-  else
-    echo '- Homebrew [skip]'
-  fi
-elif [ "$OS" = 'Debian' ]; then
-  echo 'Install dependencies [Linux - Debian]'
-  echo '- apt update'
-  sudo apt update -qqy
-  echo '- apt install build-essential curl file gcc git'
-  sudo apt install -qqy build-essential curl file gcc git
-  echo '- apt autoremove'
-  sudo apt autoremove -qqy
-  if ! (type brew >/dev/null 2>&1); then
-    echo '- Linuxbrew'
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)" </dev/null
-  else
-    echo '- Linuxbrew [skip]'
-  fi
+# Install Homebrew dependencies
+if [ "$(uname)" = 'Darwin' ]; then
+  true
+elif type apt-get >/dev/null 2>&1; then
+  echo "$ apt-get install build-essential procps curl file git"
+  sudo apt-get install build-essential procps curl file git
+  echo
+elif type dnf >/dev/null 2>&1; then
+  echo "$ dnf groupinstall 'Development Tools'"
+  sudo dnf groupinstall 'Development Tools'
+  echo
+  echo "$ dnf install procps-ng curl file git"
+  sudo dnf install procps-ng curl file git
+  echo
+elif type pacman >/dev/null 2>&1; then
+  echo "$ pacman -Syu base-devel procps-ng curl file git"
+  sudo pacman -Syu base-devel procps-ng curl file git
+  echo
 else
   echo 'Error: This os not supported.'
   exit 1
 fi
-echo
+
+# Install Homebrew
+# shellcheck disable=SC2016
+if ! (type brew >/dev/null 2>&1); then
+  echo '$ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" </dev/null'
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" </dev/null
+  echo
+fi
+
 # ----
 
 # Clone dotfiles repo
