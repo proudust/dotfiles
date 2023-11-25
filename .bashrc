@@ -18,10 +18,6 @@ if [ -f /proc/sys/fs/binfmt_misc/WSLInterop ]; then
 fi
 # ----
 
-# Golang
-export GOPATH="$HOME/develop"
-export PATH="$GOPATH/bin:$PATH"
-
 # Node.js (with Volta)
 export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"

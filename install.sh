@@ -99,8 +99,6 @@ echo
 echo 'Install packages'
 echo '- Utility'
 brew install bash-completion bat coreutils exa ghq jq peco shellcheck unzip yq zip
-echo '- Golang'
-brew install golang
 echo '- Node.js (with volta, npm-check-updates)'
 brew install volta
 volta install node@lts
