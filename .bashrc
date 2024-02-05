@@ -28,6 +28,11 @@ export OPENSSL_DIR='/home/linuxbrew/.linuxbrew/opt/openssl@1.1'
 export RUST_BACKTRACE=1
 export PATH="$CARGO_HOME/bin:$PATH"
 
+# Homebrew
+if [ -d '/opt/homebrew' ]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
+
 # Linuxbrew
 if [ -d '/home/linuxbrew/.linuxbrew' ]; then
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
