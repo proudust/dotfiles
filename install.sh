@@ -98,7 +98,7 @@ echo
 
 echo 'Install packages'
 echo '- Utility'
-brew install bash-completion bat coreutils exa ghq jq peco shellcheck unzip yq zip
+brew install bash-completion bat coreutils eza ghq jq peco shellcheck unzip yq zip
 echo '- Node.js (with volta, npm-check-updates)'
 brew install volta
 volta install node@lts
