@@ -27,6 +27,7 @@ export CARGO_HOME="$HOME/.cargo"
 export OPENSSL_DIR='/home/linuxbrew/.linuxbrew/opt/openssl@1.1'
 export RUST_BACKTRACE=1
 export PATH="$CARGO_HOME/bin:$PATH"
+export PATH="/home/linuxbrew/.linuxbrew/opt/rustup/bin:$PATH"
 
 # Homebrew
 if [ -d '/opt/homebrew' ]; then

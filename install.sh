@@ -107,8 +107,7 @@ echo '- Python (2, 3)'
 brew install python3 python@2
 echo '- Rust (rustup)'
 brew install rustup
-rustup-init
-"$HOME/.cargo/bin/rustup" target add x86_64-unknown-linux-musl
+rustup target add x86_64-unknown-linux-musl
 if [ "$OS" = 'Mac' ]; then
   echo "- GUI"
   brew tap homebrew/cask-fonts
