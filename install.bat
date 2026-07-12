@@ -64,6 +64,9 @@ DEL "%LOCALAPPDATA%\Packages\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe\LocalSt
 MKLINK ^
   "%LOCALAPPDATA%\Packages\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe\LocalState\settings.json" ^
   "%HOMEDRIVE%%HOMEPATH%\dotfiles\windows\winget\settings.json"
+@REM wsl
+DEL "%HOMEDRIVE%%HOMEPATH%\.wslconfig"
+MKLINK "%HOMEDRIVE%%HOMEPATH%\.wslconfig" "%DOTFILES_REPO%\windows\.wslconfig"
 
 @ECHO Enable Windows feature
 dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
